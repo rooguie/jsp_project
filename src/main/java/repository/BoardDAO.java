@@ -3,12 +3,13 @@ package repository;
 import java.util.List;
 
 import domain.Board;
+import domain.PagingVO;
 
 public interface BoardDAO {
 
 	int insert(Board board);
 
-	List<Board> getList(Board boardList);
+	List<Board> getList(PagingVO pagingVO);
 
 	Board detail(int bno);
 
@@ -19,5 +20,7 @@ public interface BoardDAO {
 	int delete(int bno);
 
 	List<Board> getMyList(Board board);
+
+	int getTotal();
 
 }

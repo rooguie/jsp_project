@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.Board;
+import domain.PagingVO;
 import orm.DataBaseBuilder;
 
 public class BoardDAOImpl implements BoardDAO {
@@ -27,11 +28,11 @@ public class BoardDAOImpl implements BoardDAO {
 		return isOk;
 	}
 
-	@Override
-	public List<Board> getList(Board boardList) {
-		// TODO Auto-generated method stub
-		return sql.selectList("boardMapper.selectList",boardList);
-	}
+	/*
+	 * @Override public List<Board> getList(Board boardList) { // TODO
+	 * Auto-generated method stub return
+	 * sql.selectList("boardMapper.selectList",boardList); }
+	 */
 
 	@Override
 	public Board detail(int bno) {
@@ -70,6 +71,19 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		log.info("myListDAO");
 		return sql.selectList("boardMapper.myList",board);
+	}
+
+	@Override
+	public List<Board> getList(PagingVO pagingVO) {
+		// TODO Auto-generated method stub
+		log.info("getList DAO");
+		return sql.selectList("boardMapper.paging",pagingVO);
+	}
+
+	@Override
+	public int getTotal() {
+		// TODO Auto-generated method stub
+		return sql.selectOne("boardMapper.cnt");
 	}
 
 }

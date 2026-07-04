@@ -8,8 +8,10 @@
  		INSERT board(title, writer, contents) VALUES(#{title}, #{writer}, #{contents})
  	</insert>
  	
- 	<select id="selectList" resultType="domain.Board">
- 		SELECT * FROM board ORDER BY bno DESC
+ 	<select id="paging" resultType="domain.Board">
+ 		SELECT * FROM board
+ 		ORDER BY bno DESC
+ 		LIMIT #{pageIndex}, #{qty}
  	</select>
  	
  	<select id="detail" resultType="domain.Board">
@@ -30,6 +32,10 @@
  
  	<select id="myList" resultType="domain.Board">
 		SELECT * FROM board WHERE writer=#{writer}
+	</select>
+	
+	<select id="cnt" resultType="int">
+		SELECT COUNT(bno) FROM board
 	</select>
  
 </mapper>

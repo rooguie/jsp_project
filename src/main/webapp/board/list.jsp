@@ -20,7 +20,7 @@
 			</select> <input type="text" name="keyword" placeholder="keyword...">
 			<button type="submit">검색</button>
 		</form>
-		
+
 	</div>
 
 
@@ -50,12 +50,43 @@
 			</c:forEach>
 		</tbody>
 
-
-
-
-
-
-
 	</table>
+
+	<!-- 페이징 -->
+
+	<div>
+		<c:if test="${ph.prev }">
+			<a href="/brd/list?pageNo=${ph.startPage-1 }"> < </a>
+			<!-- 이전 버튼 -->
+		</c:if>
+
+		<c:forEach begin="${ph.startPage }" end="${ph.endPage }" var="i">
+			<a href="/brd/list?pageNo=${i }"> ${i} </a>
+			<!-- 1 2 4 5 ... 10  -->
+		</c:forEach>
+
+		<c:if test="${ph.next }">
+			<a href="/brd/list?pageNo=${ph.endPage+1 }"> > </a>
+			<!-- 다음 버튼 -->
+		</c:if>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

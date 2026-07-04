@@ -16,7 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.Board;
+import domain.PagingVO;
 import domain.User;
+import handler.PagingHandler;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -104,11 +106,29 @@ public class BoardController extends HttpServlet {
 
 			try {
 
-				Board boardList = new Board();
+//				Board boardList = new Board();
+				PagingVO pagingVO=new PagingVO();
+				
+				if(request.getParameter("pageNo")!=null) {
+					int pageNo=Integer.parseInt(request.getParameter("pageNo"));
+				
+					pagingVO=new PagingVO(pageNo);
+				}
+				
+				log.info("pagingVO >> {}",pagingVO);
+				
 
-				List<Board> list = bsv.getList(boardList);
+				List<Board> list = bsv.getList(pagingVO);
+				log.info("list >> {}",list);
+				
+				int totalCnt=bsv.getTotal();
+				log.info("totalCnt=>{}",totalCnt);
+				
+				PagingHandler ph = new PagingHandler(pagingVO, totalCnt);
 
 				request.setAttribute("list", list);
+				request.setAttribute("ph", ph);
+				
 				destPage = "/board/list.jsp";
 			} catch (Exception e) {
 				// TODO: handle exception

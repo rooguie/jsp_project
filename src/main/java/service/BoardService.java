@@ -3,12 +3,14 @@ package service;
 import java.util.List;
 
 import domain.Board;
+import domain.PagingVO;
 
 public interface BoardService {
 
+
 	int insert(Board board);
 
-	List<Board> getList(Board boardList);
+	List<Board> getList(PagingVO pagingVO);
 
 	Board detail(int bno);
 
@@ -19,6 +21,8 @@ public interface BoardService {
 	int delete(int bno);
 
 	List<Board> getMyList(Board board);
+
+	int getTotal();
 	
 	
 }

@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import domain.Board;
+import domain.PagingVO;
 import repository.BoardDAO;
 import repository.BoardDAOImpl;
 
@@ -20,11 +21,11 @@ public class BoardServiceImpl implements BoardService {
 		return bdao.insert(board);
 	}
 
-	@Override
-	public List<Board> getList(Board boardList) {
-		// TODO Auto-generated method stub
-		return bdao.getList(boardList);
-	}
+//	@Override
+//	public List<Board> getList(Board boardList) {
+//		// TODO Auto-generated method stub
+//		return bdao.getList(boardList);
+//	}
 
 	@Override
 	public Board detail(int bno) {
@@ -54,6 +55,18 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> getMyList(Board board) {
 		// TODO Auto-generated method stub
 		return bdao.getMyList(board);
+	}
+
+	@Override
+	public List<Board> getList(PagingVO pagingVO) {
+		// TODO Auto-generated method stub
+		return bdao.getList(pagingVO);
+	}
+
+	@Override
+	public int getTotal() {
+		// TODO Auto-generated method stub
+		return bdao.getTotal();
 	}
 
 }
